@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<title>Edit Profile</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+  			<div class="container">
+    			<div class="navbar-header">
+      				<a class="navbar-brand">Test App</a>
+    			</div>
+    			<p class="navbar-text navbar-left">Dashboard</p>
+    			<a href="#"><p class="navbar-text navbar-left">Profile</p></a>
+    			<p class="navbar-text navbar-right"><a href="{% url 'user_dashboard:logout' %}" class="navbar-link">Logoff</a></p>
+  			</div>
+		</nav>
+		<div class= "container">
+			<h1>Edit user #{{user.id}}</h1>
+			<form action ="{% url 'logreg:validate_edit' id=user.id %}" method="post">{% csrf_token %}
+				<div class="form-group">
+					<label>Email:</label><br>
+					<input type = "text" name="email"><br>
+				</div>
+				<div class="form-group">
+					<label>First Name:</label><br>
+					<input type = "text" name ="first_name"><br>
+				</div>
+				<div class="form-group">
+					<label>Last Name:</label><br>
+					<input type = "text" name ="last_name"><br>
+				</div>
+				<div class="form-group">
+					<label>User Level:</label><br>
+					<select name ="user_level">
+						<option value = "0">0</option>
+						<option value ="0">9</option>
+					</select>
+				</div>
+					<input type = "submit" value = "save" class="pull-right">
+			</form>
+		</div>
+	</body>
+</html>

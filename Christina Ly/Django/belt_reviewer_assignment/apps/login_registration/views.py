@@ -30,7 +30,7 @@ def register(request):
 		request.session['message'] = "Email is not valid"
 	elif not info_validate:
 		request.session['message'] = "First Name required and must letters\r\n Last Name required and must have letters \r\n Password Required with no fewer than 8 characters and must match passwowrd confirmation"
-	return redirect(reverse('logreg:my_login'))
+	return redirect(reverse('logreg:my_index'))
 
 def login(request):
 	login_validate = User.objects.login_valid(request.POST['email'], request.POST['password'])

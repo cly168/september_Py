@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<title>Login & Reg | Home</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+  			<div class="container">
+    			<div class="navbar-header">
+      				<a class="navbar-brand">Test App</a>
+    			</div>
+    			<a href="{% url 'user_dashboard:my_index' %}"><p class="navbar-text navbar-left">Home</p></a>
+    			<p class="navbar-text navbar-right"><a href="{% url 'logreg:my_index' %}" class="navbar-link">Sign In</a></p>
+  			</div>
+		</nav>
+		<div class="container">
+			<div class="col-xs-6 col-md-4">
+				<h1>Sign in</h1>
+				{% if not request.session.login_message is '' %}
+					<h3>{{request.session.login_message}}</h3>
+				{% endif %}
+				<form action = "{% url 'logreg:validate_login' %}" method="post">{% csrf_token %}
+					<div class="form-group">
+						<label>Email Address:</label><br>
+						<input type = "text" name="email"><br>
+					</div>
+					<div class="form-group">
+						<label>Password:</label><br>
+						<input type = "password" name = "password"><br>
+					</div>
+					<input type = "submit" value = "Signin" class="col-xs-3 col-xs-offset-5"><br>
+					<a href="{% url 'logreg:my_reg' %}" class="col-xs-12">Don't have an account? Register</a>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

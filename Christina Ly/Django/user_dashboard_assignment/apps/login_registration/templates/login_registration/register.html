@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<title>Login & Reg | Home</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+  			<div class="container">
+    			<div class="navbar-header">
+      				<a class="navbar-brand">Test App</a>
+    			</div>
+    			<a href="{% url 'user_dashboard:my_index' %}"><p class="navbar-text navbar-left">Home</p></a>
+    			<p class="navbar-text navbar-right"><a href="{% url 'logreg:my_index' %}" class="navbar-link">Sign In</a></p>
+  			</div>
+		</nav>
+		<div class="container">
+			<div class="col-xs-6 col-md-4">
+				<h1>Registration</h1>
+				{% if not request.session.register_message is '' %}
+					<h3>{{request.session.register_message}}</h3>
+				{% endif %}
+				<form action ="{% url 'logreg:validate_reg' %}" method="post">{% csrf_token %}
+					<div class="form-group">
+						<label>Email:</label><br>
+						<input type = "text" name="email"><br>
+					</div>
+					<div class="form-group">
+						<label>First Name:</label><br>
+						<input type = "text" name ="first_name"><br>
+					</div>
+					<div class="form-group">
+						<label>Last Name:</label><br>
+						<input type = "text" name ="last_name"><br>
+					</div>
+					<div class="form-group">
+						<label>Password:</label><br>
+						<input type = "password" name = "password"><br>
+					</div>
+					<div class="form-group">
+						<label>Password Confirm:</label><br>
+						<input type = "password" name = "confirm"><br>
+					</div>
+						<input type = "submit" value = "Register" class="pull-right">
+				</form>
+				<a href="{% url 'logreg:my_index' %}" class="col-xs-12">Already have an account? Login</a>
+			</div>
+		</div>
+	</body>
+</html>

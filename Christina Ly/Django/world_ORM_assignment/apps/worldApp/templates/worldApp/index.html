@@ -6,8 +6,11 @@
   </head>
   <body>
 
-    {%  for language in languages %}
+   <!--  {%  for language in languages %}
       {{ language.country.name }} {{ language.language }} {{ language.percentage }}
+    {% endfor %} -->
+    {% for city in cities %}
+    	{{city.name}}
     {% endfor %}
 
   </body>

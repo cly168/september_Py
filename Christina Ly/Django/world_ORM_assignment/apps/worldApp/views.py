@@ -13,6 +13,7 @@ def two(request):
 		print country.city_count
 	return render(request, 'worldApp/index.html')
 def three(request):
-	cities = models.Cities.objects.filter(country__name = "Mexico").filter(population__gt = 500000)
+	cities = models.Cities.objects.filter(country__name = "Mexico").filter(population__gt = 500000).order_by('-population')
 	for city in cities:
 		print city.name
+	return render(request, 'worldApp/index.html')
