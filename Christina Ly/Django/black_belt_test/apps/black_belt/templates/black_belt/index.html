@@ -47,7 +47,7 @@
 							<td><a href = "{% url 'black_belt:my_destination' id=other_travel.id %}">{{other_travel.destination}}</a></td>
 							<td>{{other_travel.start}}</td>
 							<td>{{other_travel.end}}</td>
-							<td><a href = "#">Join</a></td>
+							<td><a href = "{% url 'black_belt:my_join' id=other_travel.id %}">Join</a></td>
 						</tr>
 					{% endfor %}
 				</tbody>

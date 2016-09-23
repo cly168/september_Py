@@ -11,12 +11,14 @@ def index(request):
 	context={
 		'user': User.objects.get(id=id),
 		'my_travels':Travel.objects.filter(user_id=id),
-		'other_travels':Travel.objects.exclude(id=id)
+		'other_travels':Travel.objects.exclude(user_id=id)
 	}
 	return render(request, 'black_belt/index.html', context)
 def add(request):
+	id = request.session['id']
 	context={
-		"travels": Travel.objects.all()
+		'user': User.objects.get(id=id),
+		'my_travels':Travel.objects.filter(user_id=id),
 	}
 	return render(request, 'black_belt/add.html', context)
 def new_info(request):
@@ -28,3 +30,7 @@ def destination(request, id):
 		'travel': Travel.objects.get(id=id)
 	}
 	return render(request, 'black_belt/destination.html', context)
+def join(request, id):
+	user = User.objects.get(id =request.session['id'])
+	travel=Travel.objects.create(destination= destination.id, )
+	return redirect(reverse('black_belt:my_destination', kwargs={'id':id}))

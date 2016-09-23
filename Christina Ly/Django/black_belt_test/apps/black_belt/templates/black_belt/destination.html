@@ -7,7 +7,7 @@
 		<a href = "{% url 'logreg:logout' %}">Logout</a>
 		<a href="{% url 'black_belt:my_index' %}">Home</a>
 		<h1>{{travel.destination}}</h1>
-		<p>Planned by: {{user.first_name}}</p>
+		<p>Planned by: {{travel.user.first_name}}</p>
 		<p>Description: {{travel.plan}}</p>
 		<p>Travel Date From: {{travel.start}}</p>
 		<p>Travel Date To: {{travel.end}}</p>
