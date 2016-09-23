@@ -10,3 +10,9 @@ class Travel(models.Model):
 	plan = models.CharField(max_length = 255)
 	created_at = models.DateTimeField(auto_now_add = True)
 	updated_at = models.DateTimeField(auto_now = True)
+
+class Guest(models.Model):
+	travel = models.ForeignKey(Travel)
+	user = models.ForeignKey(User)
+	created_at = models.DateTimeField(auto_now_add = True)
+	updated_at = models.DateTimeField(auto_now = True)

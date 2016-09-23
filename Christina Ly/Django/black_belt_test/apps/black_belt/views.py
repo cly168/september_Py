@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from ..login_registration.models import User
-from .models import Travel
+from .models import Travel, Guest
 import bcrypt
 from django.core.urlresolvers import reverse
 
@@ -32,5 +32,11 @@ def destination(request, id):
 	return render(request, 'black_belt/destination.html', context)
 def join(request, id):
 	user = User.objects.get(id =request.session['id'])
-	travel=Travel.objects.create(destination= destination.id, )
+	guest = Guest.objects.create(guest_travel=id, user=user)
+	user.save()
 	return redirect(reverse('black_belt:my_destination', kwargs={'id':id}))
+
+
+
+# if you want your guests that are going on trip.id you do
+# Guests.objects.filter(trip_id=trip.id)
