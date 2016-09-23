@@ -4,6 +4,8 @@
 		<title>Add Plan</title>
 	</head>
 	<body>
+		<a href = "{% url 'logreg:logout' %}">Logout</a>
+		<a href="{% url 'black_belt:my_index' %}">Home</a>
 		<h1>Add a Trip</h1>
 		<form action ="{% url 'black_belt:my_new_info' %}" method ="post">{% csrf_token %}
 			<label>Destination:</label><input type ="text" name ="destination"><br>

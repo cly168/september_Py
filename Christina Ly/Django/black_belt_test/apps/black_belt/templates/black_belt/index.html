@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<a href = "{% url 'logreg:logout' %}">Logout</a>
-		<h1>Hello {{my_travel.user.first_name}}!</h1>
+		<h1>Hello {{user.first_name}}!</h1>
 		<div id="travel_table">
 			<h3>Your Trip Schedules</h3>
 			<table>
@@ -20,7 +20,7 @@
 				<tbody>
 					{% for my_travel in my_travels %}
 						<tr>
-							<td><a href = "#">{{my_travel.destination}}</a></td>
+							<td><a href = "{% url 'black_belt:my_destination' id=my_travel.id %}">{{my_travel.destination}}</a></td>
 							<td>{{my_travel.start}}</td>
 							<td>{{my_travel.end}}</td>
 							<td>{{my_travel.plan}}</td>
@@ -44,7 +44,7 @@
 					{% for other_travel in other_travels %}
 						<tr>
 							<td>{{other_travel.user.first_name}}</td>
-							<td><a href = "#">{{other_travel.destination}}</a></td>
+							<td><a href = "{% url 'black_belt:my_destination' id=other_travel.id %}">{{other_travel.destination}}</a></td>
 							<td>{{other_travel.start}}</td>
 							<td>{{other_travel.end}}</td>
 							<td><a href = "#">Join</a></td>
