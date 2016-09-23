@@ -5,6 +5,27 @@
 	</head>
 	<body>
 		<h1>Hello, Jerry!</h1>
-		<
+		<div id="travel_table">
+			<table>
+				<thead>
+					<tr>
+						<th>Destination</th>
+						<th>Travel Start Date</th>
+						<th>Travel End Date</th>
+						<th>Plan</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for travel in travels %}
+						<tr>
+							<td>{{travel.destination}}</td>
+							<td>{{travel.start}}</td>
+							<td>{{travel.end}}</td>
+							<<td>{{travel.plan}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</body>
 </html>

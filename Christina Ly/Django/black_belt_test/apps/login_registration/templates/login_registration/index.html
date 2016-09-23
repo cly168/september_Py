@@ -9,7 +9,7 @@
 		{% if not request.session.message is '' %}
 			<h3>{{request.session.message}}</h3>
 		{% endif %}
-		<form action ="{% url 'logreg:my_register'%}" method="post">{% csrf_token %}
+		<form action ="{% url 'logreg:my_register' %}" method="post">{% csrf_token %}
 			<label>Name:</label><input type = "text" name ="first_name"><br>
 			<label>Username:</label><input type = "text" name ="username"><br>
 			<label>Password:</label><input type = "text" name = "password"><br>
@@ -17,8 +17,8 @@
 			<input type = "submit" value = "Register">
 		</form>
 		<h1>Login</h1>
-		<form action ="/validate_login" method="post">{% csrf_token %}
-			<label>Username:</label><input type = "text" name="email"><br>
+		<form action ="{% url 'logreg:my_login' %}" method="post">{% csrf_token %}
+			<label>Username:</label><input type = "text" name="username"><br>
 			<label>Password:</label><input type = "text" name = "password"><br>
 			<input type = "submit" value = "Login">
 		</form>

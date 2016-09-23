@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User
+from ..login_registration.models import User
 import bcrypt
 from django.core.urlresolvers import reverse
 
@@ -20,7 +20,7 @@ def register(request):
 		first_name = request.POST['first_name']
 		username = request.POST['username']
 		User.objects.create(first_name = first_name, username = username, password = hashed)
-		return redirect(reverse('logreg:my_success'))
+		return redirect(reverse('black_belt:my_index'))
 	elif not info_validate:
 		request.session['message'] = "First Name required and must letters\r\n Username required and must have letters \r\n Password Required with no fewer than 8 characters and must match passwowrd confirmation"
 		return redirect(reverse('logreg:my_index'))
@@ -29,9 +29,9 @@ def login(request):
 	if login_validate:
 		request.session['message'] = ''
 		request.session['first_name'] = User.objects.get(username =request.POST['username']).first_name
-		return redirect(reverse('logreg:success'))
+		return redirect(reverse('black_belt:my_index'))
 	elif not login_validate:
 		request.session['message']= 'Wrong login credentials'
 	return redirect(reverse('logreg:my_index'))
 def success(request):
-	return render(request, 'login_registration/success.html')
+	return render(request, 'black_belt/index.html')
