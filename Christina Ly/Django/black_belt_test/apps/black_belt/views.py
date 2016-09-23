@@ -7,8 +7,9 @@ from django.core.urlresolvers import reverse
 def index(request):
 	request.session['login_message'] = ""
 	request.session['register_message'] = ""
+	id = request.session['id']
 	context={
-		'my_travels':Travel.objects.filter(user.id=request.session['id']),
+		'my_travels':Travel.objects.filter(user_id=id),
 		'other_travels':Travel.objects.exclude(id=id)
 	}
 	return render(request, 'black_belt/index.html', context)
