@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from ..login_registration.models import User
+from .models import Travel
 import bcrypt
 from django.core.urlresolvers import reverse
 

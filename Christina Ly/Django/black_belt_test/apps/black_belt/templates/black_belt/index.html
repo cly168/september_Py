@@ -22,7 +22,7 @@
 							<td>{{travel.destination}}</td>
 							<td>{{travel.start}}</td>
 							<td>{{travel.end}}</td>
-							<<td>{{travel.plan}}</td>
+							<td>{{travel.plan}}</td>
 						</tr>
 					{% endfor %}
 				</tbody>
@@ -40,11 +40,9 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for travel in travels %}
+					{% for user in users %}
 						<tr>
-							{% for user in users %}
-								<td>{{user.first_name}}</td>
-							{% endfor %}
+							<td>{{user.first_name}}</td>
 							<td>{{travel.destination}}</td>
 							<td>{{travel.start}}</td>
 							<td>{{travel.end}}</td>
