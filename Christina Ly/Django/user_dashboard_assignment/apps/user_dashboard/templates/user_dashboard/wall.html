@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<title>User Information</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+  			<div class="container">
+    			<div class="navbar-header">
+      				<a class="navbar-brand">Test App</a>
+    			</div>
+    			<p class="navbar-text navbar-left">Dashboard</p>
+    			<a href="#"><p class="navbar-text navbar-left">Profile</p></a>
+    			<p class="navbar-text navbar-right"><a href="{% url 'user_dashboard:logout' %}" class="navbar-link">Logoff</a></p>
+  			</div>
+		</nav>
+		<div class="container">
+			<h1>{{user.first_name}}{{user.last_name}}</h1>
+			<p>Registered at: {{user.created_at}}</p>
+			<p>User ID: {{user.id}}</p>
+			<p>Email Address: {{user.email}}</p>
+			<p>Description: {{user.description}}</p>
+			<div class="row">
+				<div class="col-xs-12">
+					<form method ="post" action="{% url 'user_dashboard:post_message' id=user.id %}">{% csrf_token %}
+						<label>Leave a message for {{user.first_name}}</label>
+						<textarea cols = "100" rows = "5" name="message"></textarea>
+						<input type ="submit" value ="Post">
+					</form>
+
+				</div>
+			</div>
+			<div class="row">
+				{% for message in messages %}
+					{{message.messenger.first_name}} wrote <br>{{message.message}} 
+<!-- 					{% for comment in comments%}
+						{{comment..first_name}} wrote <br>{{comment.comment}}
+					{% endfor %} -->
+					<form method ="post" action="{% url 'user_dashboard:post_comment' id=message.id %}">{% csrf_token %}
+						<label>Leave a comment for {{message.messenger.first_name}}</label>
+						<textarea cols = "100" rows = "5" name="comment"></textarea>
+						<input type ="submit" value ="Post">
+					</form>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+</html>

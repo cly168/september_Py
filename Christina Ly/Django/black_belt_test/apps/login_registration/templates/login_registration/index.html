@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login & Reg | Home</title>
+	</head>
+	<body>
+		<h1>Welcome!</h1>
+		<h1>Registration</h1>
+		{% if not request.session.message is '' %}
+			<h3>{{request.session.message}}</h3>
+		{% endif %}
+		<form action ="{% url 'logreg:my_register'%}" method="post">{% csrf_token %}
+			<label>Name:</label><input type = "text" name ="first_name"><br>
+			<label>Username:</label><input type = "text" name ="username"><br>
+			<label>Password:</label><input type = "text" name = "password"><br>
+			<label>Confirm:</label><input type = "text" name = "confirm"><br>
+			<input type = "submit" value = "Register">
+		</form>
+		<h1>Login</h1>
+		<form action ="/validate_login" method="post">{% csrf_token %}
+			<label>Username:</label><input type = "text" name="email"><br>
+			<label>Password:</label><input type = "text" name = "password"><br>
+			<input type = "submit" value = "Login">
+		</form>
+	</body>
+</html>
