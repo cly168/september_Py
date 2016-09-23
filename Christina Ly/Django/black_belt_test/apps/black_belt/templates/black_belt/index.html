@@ -6,6 +6,7 @@
 	<body>
 		<h1>Hello, Jerry!</h1>
 		<div id="travel_table">
+			<h3>Your Trip Schedules</h3>
 			<table>
 				<thead>
 					<tr>
@@ -18,6 +19,32 @@
 				<tbody>
 					{% for travel in travels %}
 						<tr>
+							<td>{{travel.destination}}</td>
+							<td>{{travel.start}}</td>
+							<td>{{travel.end}}</td>
+							<<td>{{travel.plan}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div id ="other_travel">
+			<h3>Other User's Travel Plans</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Destination</th>
+						<th>Travel Start Date</th>
+						<th>Do you Want to Join?</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for travel in travels %}
+						<tr>
+							{% for user in users %}
+								<td>{{user.first_name}}</td>
+							{% endfor %}
 							<td>{{travel.destination}}</td>
 							<td>{{travel.start}}</td>
 							<td>{{travel.end}}</td>
