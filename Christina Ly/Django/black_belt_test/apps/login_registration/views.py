@@ -37,3 +37,6 @@ def login(request):
 	return redirect(reverse('logreg:my_index'))
 def success(request):
 	return render(request, 'black_belt/index.html')
+def logout(request):
+	request.session.pop('id')
+	return redirect(reverse('logreg:my_index'))

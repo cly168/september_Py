@@ -8,8 +8,8 @@ def index(request):
 	request.session['login_message'] = ""
 	request.session['register_message'] = ""
 	context={
-		'user':User.objects.get(id=request.session['id']),
-		'travels':Travel.objects.all()
+		'my_travels':Travel.objects.filter(user.id=request.session['id']),
+		'other_travels':Travel.objects.exclude(id=id)
 	}
 	return render(request, 'black_belt/index.html', context)
 def add(request):
@@ -19,5 +19,5 @@ def add(request):
 	return render(request, 'black_belt/add.html', context)
 def new_info(request):
 	user = User.objects.get(id =request.session['id'])
-	travel=Travel.objects.create(destination = request.POST['destination'], plan = request.POST['plan'], start = request.POST['start'], end = request.POST['end'])	
+	travel=Travel.objects.create(user = user, destination = request.POST['destination'], plan = request.POST['plan'], start = request.POST['start'], end = request.POST['end'])	
 	return redirect(reverse('black_belt:my_index'))
