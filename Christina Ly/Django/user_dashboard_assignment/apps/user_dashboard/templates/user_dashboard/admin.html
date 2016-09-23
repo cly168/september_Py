@@ -13,7 +13,7 @@
       				<a class="navbar-brand">Test App</a>
     			</div>
     			<p class="navbar-text navbar-left">Dashboard</p>
-    			<a href="#"><p class="navbar-text navbar-left">Profile</p></a>
+    			<a href="{% url 'logreg:edit_profile' id=request.session.id %}"><p class="navbar-text navbar-left">Profile</p></a>
     			<p class="navbar-text navbar-right"><a href="{% url 'user_dashboard:logout' %}" class="navbar-link">Logoff</a></p>
   			</div>
 		</nav>

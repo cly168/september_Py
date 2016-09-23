@@ -12,14 +12,15 @@
     			<div class="navbar-header">
       				<a class="navbar-brand">Test App</a>
     			</div>
-    			<a href="{% url 'user_dashboard:my_dashboard' %}"><p class="navbar-text navbar-left" >Dashboard</p></a>
+    			<p class="navbar-text navbar-left">Dashboard</p>
     			<a href="#"><p class="navbar-text navbar-left">Profile</p></a>
     			<p class="navbar-text navbar-right"><a href="{% url 'user_dashboard:logout' %}" class="navbar-link">Logoff</a></p>
   			</div>
 		</nav>
 		<div class= "container">
 			<div class ="col-md-12">
-				<h1 class="pull-left">Edit profile</h1>
+				<h1 class="pull-left">Edit user #{{user.id}}</h1>
+				<p><a class="btn btn-primary btn-md pull-right" href="{% url 'user_dashboard:my_admin' %}" role="button">Return to Dashboard</a></p>
 			</div>
 			{% if not request.session.register_message is '' %}
 				<h3>{{request.session.register_message}}</h3>
@@ -39,6 +40,18 @@
 						<label>Last Name:</label><br>
 						<input type = "text" name ="last_name" value ="{{user.last_name}}"><br>
 					</div>
+					<div class="form-group">
+						<label>User Level:</label><br>
+						<select name ="user_level">
+							{% if user.user_level == 0 %}
+								<option value = "0" selected>0</option>
+								<option value ="9">9</option>
+							{% else %}
+								<option value = "0">0</option>
+								<option value ="9" selected>9</option>
+							{% endif %}
+						</select>
+					</div>
 						<input type = "submit" value = "save">
 				</form>
 			</div>
@@ -54,15 +67,6 @@
 						<input type = "password" name = "confirm"><br>
 					</div>
 						<input type = "submit" value = "Update Password">
-				</form>
-			</div>	
-			<div class="col-xs-8">	
-				<form method ="post" action ="{% url 'logreg:description_edit' id=user.id %}"><br>
-					<div class="form-group">{% csrf_token %}
-						<label>Edit Description</label><br>
-						<textarea name ="description" cols="100" rows="5">{{user.description}}</textarea><br>
-						<input type = "submit" value ="save" class="pull-right">
-					</div>
 				</form>
 			</div>	
 		</div>
