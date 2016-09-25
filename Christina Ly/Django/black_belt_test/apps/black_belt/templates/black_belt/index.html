@@ -20,12 +20,13 @@
 				<tbody>
 					{% for my_travel in my_travels %}
 						<tr>
-							<td><a href = "{% url 'black_belt:my_destination' id=my_travel.id %}">{{my_travel.destination}}</a></td>
-							<td>{{my_travel.start}}</td>
-							<td>{{my_travel.end}}</td>
-							<td>{{my_travel.plan}}</td>
+							<td><a href = "{% url 'black_belt:my_destination' id=my_travel.travel.id %}">{{my_travel.travel.destination}}</a></td>
+							<td>{{my_travel.travel.start}}</td>
+							<td>{{my_travel.travel.end}}</td>
+							<td>{{my_travel.travel.plan}}</td>
 						</tr>
 					{% endfor %}
+					
 				</tbody>
 			</table>
 		</div>
@@ -42,13 +43,15 @@
 				</thead>
 				<tbody>
 					{% for other_travel in other_travels %}
-						<tr>
-							<td>{{other_travel.user.first_name}}</td>
-							<td><a href = "{% url 'black_belt:my_destination' id=other_travel.id %}">{{other_travel.destination}}</a></td>
-							<td>{{other_travel.start}}</td>
-							<td>{{other_travel.end}}</td>
-							<td><a href = "{% url 'black_belt:my_join' id=other_travel.id %}">Join</a></td>
-						</tr>
+
+							<tr>
+								<td>{{other_travel.user.first_name}}</td>
+								<td><a href = "{% url 'black_belt:my_destination' id=other_travel.id %}">{{other_travel.destination}}</a></td>
+								<td>{{other_travel.start}}</td>
+								<td>{{other_travel.end}}</td>
+								<td><a href = "{% url 'black_belt:my_join' id=other_travel.id %}">Join</a></td>
+							</tr>
+
 					{% endfor %}
 				</tbody>
 			</table>

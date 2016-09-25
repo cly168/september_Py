@@ -6,12 +6,15 @@
 	<body>
 		<a href = "{% url 'logreg:logout' %}">Logout</a>
 		<a href="{% url 'black_belt:my_index' %}">Home</a>
+		{% if not request.session.message is '' %}
+			<h3>{{request.session.message}}</h3>
+		{% endif %}
 		<h1>Add a Trip</h1>
 		<form action ="{% url 'black_belt:my_new_info' %}" method ="post">{% csrf_token %}
 			<label>Destination:</label><input type ="text" name ="destination"><br>
 			<label>Description:</label><textarea name ="plan" rows=20 cols=100></textarea>
-			<label>Travel Date From:</label><input type ="text" name ="start"><br>
-			<label>Travel Date To:</label><input type ="text" name ="end"><br>
+			<label>Travel Date From:</label><input type ="date" name ="start"><br>
+			<label>Travel Date To:</label><input type ="date" name ="end"><br>
 			<input type ="submit" name = "submit" value="Add">
 		</form>
 	</body>
